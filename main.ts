@@ -225,14 +225,12 @@ namespace stemhubCity {
 
         //read data if checksum ok
         if (_readSuccessful) {
-            
-                //DHT11
-                _humidity = resultArray[0] + resultArray[1] / 100
-                _temperature = resultArray[2] + resultArray[3] / 100
+            //DHT11
+            _humidity = resultArray[0] + resultArray[1] / 100
+            _temperature = resultArray[2] + resultArray[3] / 100
             
         }
         
-       
         //wait 1 sec after query 
         basic.pause(1000)
 
@@ -251,5 +249,45 @@ namespace stemhubCity {
 		else if(dht11data == DHT11dataType.humidity && _readSuccessful)
 			return Math.round (_humidity)
 		else return 0
+    }
+
+    export enum FanState {
+        //% block="Off"
+        Off = 0,
+        //% block="On"
+        On = 1,
+        //% block="On(Reversed)"
+        On_reverse = 2,
+        //% block="Off(Instantly)"
+        Off_instantly = 3
+    }
+
+    /**
+     * Setting the Fan
+     * @param inputA Input A, eg: DigitalPin.P14
+     * @param inputB Input B, eg: DigitalPin.P15
+     */
+    //%subcategory=SmartHome
+    //% block="Fun Control %state, Input A %inputA Input B %inputB"
+	//% weight=150
+    export function FanControl(state:FanState, inputA:DigitalPin, inputB:DigitalPin) {
+        switch (state) {
+            case 0:
+            pins.digitalWritePin(inputA, 0)
+            pins.digitalWritePin(inputB, 0)
+            break
+            case 1:
+            pins.digitalWritePin(inputA, 1)
+            pins.digitalWritePin(inputB, 0)
+            break
+            case 2:
+            pins.digitalWritePin(inputA, 0)
+            pins.digitalWritePin(inputB, 1)
+            break
+            case 3:
+            pins.digitalWritePin(inputA, 1)
+            pins.digitalWritePin(inputB, 1)
+            break
+        }
     }
 }
