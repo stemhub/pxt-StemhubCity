@@ -48,7 +48,6 @@ namespace stemhubCity {
         basic.pause(500)
     }
 
-    //%subcategory=SmartCity
     //%blockId=servo
     //%block="Turn Servo to %deg degree |at %pin"
     //% weight=240
@@ -58,6 +57,7 @@ namespace stemhubCity {
         basic.pause(500)
     }
 
+    //%subcategory=SmartCity
     //% blockId=read_light_sensor
     //% block="Get light value (percentage) at Pin %light_pin"
     //% weight=225
@@ -65,6 +65,7 @@ namespace stemhubCity {
         return Math.round(pins.analogReadPin(light_pin)/1023*100)
     }
 
+    //%subcategory=SmartHome
     //% blockId=read_raindrop_sensor
     //% block="Get raindrop value (percentage) at Pin %rain_pin"
     //% weight=200
@@ -72,6 +73,7 @@ namespace stemhubCity {
         return Math.round(pins.analogReadPin(rain_pin)/1023*100)
     }
 
+    //%subcategory=SmartHome
     //% blockId=read_touch_sensor
     //% block="Touch detected at Pin %touch_pin"
     //% weight=185
@@ -112,6 +114,7 @@ namespace stemhubCity {
     MicroSeconds
 	}
 
+    //%subcategory=SmartCity
     //% blockId=read_distance_sensor
 	//% block="Get distance unit %unit trig %trig echo %echo"
 	//% weight=140
@@ -235,7 +238,8 @@ namespace stemhubCity {
 
         }
     }
-
+    
+    //%subcategory=SmartHome
     //% block="DHT11 Read %dht11data| at pin %dht11pin|"
 	//% weight=150
     export function readData(dht11data: DHT11dataType, dht11pin: DigitalPin): number {
