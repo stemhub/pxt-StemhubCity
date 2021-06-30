@@ -1,11 +1,11 @@
 {
     "name": "stemhubCity",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "",
     "dependencies": {
         "core": "*",
-        "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "i2cLCD1602": "github:makecode-extensions/i2cLCD1602#v1.5.0"
     },
     "files": [
         "README.md",
