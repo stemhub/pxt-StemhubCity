@@ -290,4 +290,44 @@ namespace stemhubCity {
             break
         }
     }
+
+    //%subcategory=SmartHome
+    //% block="Read KeyPad, SCL Pin %SCLPin SDO Pin %SDOPin"
+	//% weight=150
+    export function readKeyPad(SCLPin:DigitalPin, SDOPin:DigitalPin):string{
+        let DATA = 0
+        pins.setPull(DigitalPin.P0, PinPullMode.PullUp)
+        pins.digitalWritePin(SDOPin, 1)
+        basic.pause(0.093)
+        pins.digitalWritePin(SDOPin, 0)
+        basic.pause(0.01)
+        pins.setPull(DigitalPin.P0, PinPullMode.PullDown)
+        for (let i = 0; i < 16; i++)
+        {
+            pins.digitalWritePin(SCLPin, 1)
+            pins.digitalWritePin(SCLPin, 0)
+            DATA |= pins.digitalReadPin(SDOPin) << i;
+        }
+        basic.pause(0.04)
+        switch(DATA & 0xFFFF){
+            case 0xFFFE: return "1"
+            case 0xFFFD: return "2"
+            case 0xFFFB: return "3"
+            case 0xFFEF: return "4"
+            case 0xFFDF: return "5"
+            case 0xFFBF: return "6"
+            case 0xFEFF: return "7"
+            case 0xFDFF: return "8"
+            case 0xFDFF: return "8"
+            case 0xFBFF: return "9"
+            case 0xEFFF: return "*"
+            case 0xDFFF: return "0"
+            case 0xBFFF: return "#"
+            case 0x7FFF: return "D"
+            case 0xF7FF: return "C"
+            case 0xFF7F: return "B"
+            case 0xFFF7: return "A"
+            default: return ""
+        }
+    }
 }
