@@ -268,7 +268,7 @@ namespace stemhubCity {
      * @param inputB Input B, eg: DigitalPin.P15
      */
     //%subcategory=SmartHome
-    //% block="Fun Control %state, Input A %inputA Input B %inputB"
+    //% block="Fan Control %state, Input A %inputA Input B %inputB"
 	//% weight=150
     export function FanControl(state:FanState, inputA:DigitalPin, inputB:DigitalPin) {
         switch (state) {
