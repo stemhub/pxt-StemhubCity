@@ -5,7 +5,7 @@ namespace stemhubCity {
     let pin_G = DigitalPin.P2
     
     /**
-     * Set traffic light pins
+     * Setting the traffic light pins
      * @param R_pin Red pin, eg: DigitalPin.P0
      * @param Y_pin Yellow pin, eg: DigitalPin.P1
      * @param G_pin Green pin, eg: DigitalPin.P2
