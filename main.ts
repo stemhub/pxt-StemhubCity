@@ -72,6 +72,15 @@ namespace stemhubCity {
         return Math.round(pins.analogReadPin(rain_pin)/1023*100)
     }
 
+    //% blockId=read_touch_sensor
+    //% block="Touch detected at Pin %touch_pin"
+    //% weight=185
+    export function read_touch_sensor(touch_pin: DigitalPin): boolean {
+        if (pins.digitalReadPin(touch_pin) == 1)
+			return true
+		else return false
+    }
+
     //% blockId=read_motion_sensor
     //% block="Get motion (triggered or not) at Pin %motion_pin"
     //% weight=180
