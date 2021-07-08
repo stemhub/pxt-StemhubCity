@@ -5,6 +5,7 @@
     "dependencies": {
         "core": "*",
         "microphone": "*",
+        "neopixel": "github:kittenbot/pxt-neopixel#v0.6.15",
         "i2cLCD1602": "github:makecode-extensions/i2cLCD1602#v1.5.0"
     },
     "files": [
