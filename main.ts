@@ -65,7 +65,7 @@ namespace stemhubCity {
     }
 
     //%subcategory=SmartHome
-    //% blockId=read_light_sensor
+    //% blockId=read_light_sensor_2
     //% block="Get light value (percentage) at Pin %light_pin"
     //% weight=225
     export function read_light_sensor_2(light_pin: AnalogPin): number {
