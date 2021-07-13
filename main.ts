@@ -87,8 +87,8 @@ namespace stemhubCity {
     //% blockId=read_motion_sensor
     //% block="Get motion (triggered or not) at Pin %motion_pin"
     //% weight=180
-    export function read_motion_sensor(motion_pin: DigitalPin): boolean {
-        if (pins.digitalReadPin(motion_pin) == 1)
+    export function read_motion_sensor(motion_pin: AnalogPin): boolean {
+        if (pins.analogReadPin(motion_pin) < 800)
             return true
         else return false
     }
