@@ -62,7 +62,7 @@ namespace stemhubCity {
     //% block="Get light value (percentage) at Pin %light_pin"
     //% weight=225
     export function read_light_sensor(light_pin: AnalogPin): number {
-        return Math.round(pins.analogReadPin(light_pin)/1023*100)
+        return Math.round(100-pins.analogReadPin(light_pin)/1023*100)
     }
 
     //%subcategory=SmartHome
