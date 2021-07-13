@@ -83,13 +83,24 @@ namespace stemhubCity {
 		else return false
     }
 
+    //%subcategory=SmartCity
     //% blockId=read_motion_sensor
     //% block="Get motion (triggered or not) at Pin %motion_pin"
     //% weight=180
-    export function read_motion_sensor(motion_pin: AnalogPin): boolean {
-        if (pins.analogReadPin(motion_pin) > 800)
-			return true
-		else return false
+    export function read_motion_sensor(motion_pin: DigitalPin): boolean {
+        if (pins.digitalReadPin(motion_pin) == 1)
+            return true
+        else return false
+    }
+
+    //%subcategory=SmartHome
+    //% blockId=read_human_sensor
+    //% block="Human detected at Pin %motion_pin"
+    //% weight=180
+    export function read_human_sensor(human_pin: DigitalPin): boolean {
+        if (pins.digitalReadPin(human_pin) == 1)
+            return true
+        else return false
     }
 
     //% blockId=read_sound_sensors
