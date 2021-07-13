@@ -38,7 +38,6 @@ namespace stemhubCity {
         basic.pause(500)
     }
 
-    //%subcategory=SmartCity
     //%blockId=turn_white_led
     //%block="Turn White LED to %intensity |at %pin"
     //% weight=245
@@ -63,6 +62,14 @@ namespace stemhubCity {
     //% weight=225
     export function read_light_sensor(light_pin: AnalogPin): number {
         return Math.round(100-pins.analogReadPin(light_pin)/1023*100)
+    }
+
+    //%subcategory=SmartHome
+    //% blockId=read_light_sensor
+    //% block="Get light value (percentage) at Pin %light_pin"
+    //% weight=225
+    export function read_light_sensor_2(light_pin: AnalogPin): number {
+        return Math.round(pins.analogReadPin(light_pin) / 1023 * 100)
     }
 
     //%subcategory=SmartHome
