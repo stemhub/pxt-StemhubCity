@@ -37,37 +37,37 @@ namespace stemhubCity {
         basic.pause(500)
     }
 
-    let ledpin_R = AnalogPin.P0
-    let ledpin_G = AnalogPin.P1
-    let ledpin_B = AnalogPin.P2
+    let ledpin_B = AnalogPin.P0
+    let ledpin_R = AnalogPin.P1
+    let ledpin_G = AnalogPin.P2
 
     /**
-     * Setting the rgb led pins
-     * @param R_pin Red pin, eg: AnalogPin.P0
-     * @param G_pin Green pin, eg: AnalogPin.P1
-     * @param B_pin Blue pin, eg: AnalogPin.P2
+     * Setting the color led pins
+     * @param B_pin Blue pin, eg: AnalogPin.P0
+     * @param R_pin Red pin, eg: AnalogPin.P1
+     * @param G_pin Green pin, eg: AnalogPin.P2
      */
     //%subcategory=SmartCity
     //% blockId=rgb_led_setting
-    //% block="RGB led pin setting |Red $R_pin Green $G_pin Blue $B_pin"
+    //% block="Color led pin setting |Blue $B_pin Red $R_pin Green $G_pin"
     //% weight=249
-    export function RGB_led_setting(R_pin: AnalogPin, G_pin: AnalogPin, B_pin: AnalogPin): void {
+    export function color_led_setting(B_pin: AnalogPin, R_pin: AnalogPin, G_pin: AnalogPin): void {
+        ledpin_B = B_pin
         ledpin_R = R_pin
         ledpin_G = G_pin
-        ledpin_B = B_pin
     }
 
     //%subcategory=SmartCity
-    //% blockId=rgb_led_control
-    //% block="Control RGB LED |Red $out_red Green $out_green Green $out_blue"
+    //% blockId=color_led_control
+    //% block="Control color LED |Blue $out_blue Red $out_red Green $out_green"
+    //% out_blue.min=0 out_blue.max=1023
     //% out_red.min=0 out_red.max=1023
     //% out_green.min=0 out_green.max=1023
-    //% out_blue.min=0 out_blue.max=1023
     //% weight=248
-    export function rgb_led_control(out_red: number, out_green: number, out_blue: number): void {
+    export function color_led_control(out_blue: number, out_red: number, out_green: number): void {
+        pins.analogWritePin(ledpin_B, out_blue)
         pins.analogWritePin(ledpin_R, out_red)
         pins.analogWritePin(ledpin_G, out_green)
-        pins.analogWritePin(ledpin_B, out_blue)
         basic.pause(500)
     }
 
