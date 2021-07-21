@@ -1,9 +1,28 @@
 //% weight=100 color=#058f05 icon="\uf1ad" block="Stemhub:City"
 namespace stemhubCity {
-    let pin_R = DigitalPin.P0
-    let pin_Y = DigitalPin.P1
-    let pin_G = DigitalPin.P2
-    
+    export class trafficLight {
+    pin_R:DigitalPin
+    pin_Y:DigitalPin
+    pin_G:DigitalPin
+
+    //%subcategory=SmartCity
+    //% blockId=traffic_light_control
+    //% block="%trafficLight|Control traffic light |Red $out_red Yellow $out_yellow Green $out_green"
+    //% out_red.shadow="toggleOnOff"
+    //% out_yellow.shadow="toggleOnOff"
+    //% out_green.shadow="toggleOnOff"
+    //% weight=250
+    traffic_light_control(out_red: boolean, out_yellow: boolean, out_green: boolean): void {
+        let red=out_red?1:0
+        let yellow=out_yellow?1:0
+        let green=out_green?1:0
+        pins.digitalWritePin(this.pin_R, red)
+        pins.digitalWritePin(this.pin_Y, yellow)
+        pins.digitalWritePin(this.pin_G, green)
+        basic.pause(500)
+    }
+    }
+
     /**
      * Setting the traffic light pins
      * @param R_pin Red pin, eg: DigitalPin.P0
@@ -14,61 +33,52 @@ namespace stemhubCity {
     //% blockId=traffic_light_setting
     //% block="Traffic light pin setting |Red $R_pin Yellow $Y_pin Green $G_pin"
     //% weight=251
-    export function traffic_light_setting(R_pin: DigitalPin,Y_pin: DigitalPin,G_pin: DigitalPin): void {
-        pin_R=R_pin
-        pin_Y=Y_pin
-        pin_G=G_pin
+    //% blockSetVariable=trafficLight
+    export function traffic_light_setting(R_pin: DigitalPin, Y_pin: DigitalPin, G_pin: DigitalPin): trafficLight {
+        let light = new trafficLight()
+        light.pin_R = R_pin
+        light.pin_Y = Y_pin
+        light.pin_G = G_pin
+        return light
     }
 
-    //%subcategory=SmartCity
-    //% blockId=traffic_light_control
-    //% block="Control traffic light |Red $out_red Yellow $out_yellow Green $out_green"
-    //% out_red.shadow="toggleOnOff"
-    //% out_yellow.shadow="toggleOnOff"
-    //% out_green.shadow="toggleOnOff"
-    //% weight=250
-    export function traffic_light_control(out_red: boolean, out_yellow: boolean, out_green: boolean): void {
-        let red=out_red?1:0
-        let yellow=out_yellow?1:0
-        let green=out_green?1:0
-        pins.digitalWritePin(pin_R, red)
-        pins.digitalWritePin(pin_Y, yellow)
-        pins.digitalWritePin(pin_G, green)
-        basic.pause(500)
-    }
-
-    let ledpin_B = AnalogPin.P0
-    let ledpin_R = AnalogPin.P1
-    let ledpin_G = AnalogPin.P2
-
-    /**
-     * Setting the color led pins
-     * @param B_pin Blue pin, eg: AnalogPin.P0
-     * @param R_pin Red pin, eg: AnalogPin.P1
-     * @param G_pin Green pin, eg: AnalogPin.P2
-     */
-    //%subcategory=SmartCity
-    //% blockId=rgb_led_setting
-    //% block="Color led pin setting |Blue $B_pin Red $R_pin Green $G_pin"
-    //% weight=249
-    export function color_led_setting(B_pin: AnalogPin, R_pin: AnalogPin, G_pin: AnalogPin): void {
-        ledpin_B = B_pin
-        ledpin_R = R_pin
-        ledpin_G = G_pin
-    }
+    export class colorLED {
+    ledpin_B:AnalogPin
+    ledpin_R:AnalogPin
+    ledpin_G:AnalogPin
 
     //%subcategory=SmartCity
     //% blockId=color_led_control
-    //% block="Control color LED |Blue $out_blue Red $out_red Green $out_green"
+    //% block="%colorLED|Control color LED |Blue $out_blue Red $out_red Green $out_green"
     //% out_blue.min=0 out_blue.max=1023
     //% out_red.min=0 out_red.max=1023
     //% out_green.min=0 out_green.max=1023
     //% weight=248
-    export function color_led_control(out_blue: number, out_red: number, out_green: number): void {
-        pins.analogWritePin(ledpin_B, out_blue)
-        pins.analogWritePin(ledpin_R, out_red)
-        pins.analogWritePin(ledpin_G, out_green)
+    color_led_control(out_blue: number, out_red: number, out_green: number): void {
+        pins.analogWritePin(this.ledpin_B, out_blue)
+        pins.analogWritePin(this.ledpin_R, out_red)
+        pins.analogWritePin(this.ledpin_G, out_green)
         basic.pause(500)
+    }
+    }
+
+    /**
+    * Setting the color led pins
+    * @param B_pin Blue pin, eg: AnalogPin.P0
+    * @param R_pin Red pin, eg: AnalogPin.P1
+    * @param G_pin Green pin, eg: AnalogPin.P2
+    */
+    //%subcategory=SmartCity
+    //% blockId=rgb_led_setting
+    //% block="Color led pin setting |Blue $B_pin Red $R_pin Green $G_pin"
+    //% weight=249
+    //% blockSetVariable=colorLED
+    export function color_led_setting(B_pin: AnalogPin, R_pin: AnalogPin, G_pin: AnalogPin): colorLED {
+        let led = new colorLED()
+        led.ledpin_B = B_pin
+        led.ledpin_R = R_pin
+        led.ledpin_G = G_pin
+        return led
     }
 
     //%blockId=turn_white_led
