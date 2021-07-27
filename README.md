@@ -2,6 +2,8 @@
 
 An Extension for Stemhub Smart City and Smart Home
 
+![icon](https://github.com/stemhub/pxt-StemhubCity/blob/master/icon.png)
+
 ## Code Example
 ```JavaScript
 basic.forever(function () {
