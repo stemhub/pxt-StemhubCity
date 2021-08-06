@@ -5,7 +5,10 @@ namespace stemhubCity {
     pin_Y:DigitalPin
     pin_G:DigitalPin
 
-    //%subcategory=SmartCity
+    /**
+     * Setting the traffic light color
+     */
+    //% subcategory=SmartCity
     //% blockId=traffic_light_control
     //% block="%trafficLight|Control traffic light |Red $out_red Yellow $out_yellow Green $out_green"
     //% out_red.shadow="toggleOnOff"
@@ -29,7 +32,7 @@ namespace stemhubCity {
      * @param Y_pin Yellow pin, eg: DigitalPin.P1
      * @param G_pin Green pin, eg: DigitalPin.P2
      */
-    //%subcategory=SmartCity
+    //% subcategory=SmartCity
     //% blockId=traffic_light_setting
     //% block="Traffic light pin setting |Red $R_pin Yellow $Y_pin Green $G_pin"
     //% weight=251
@@ -47,7 +50,10 @@ namespace stemhubCity {
     ledpin_R:AnalogPin
     ledpin_G:AnalogPin
 
-    //%subcategory=SmartCity
+    /**
+     * Setting the led light color
+     */
+    //% subcategory=SmartCity
     //% blockId=color_led_control
     //% block="%colorLED|Control color LED |Blue $out_blue Red $out_red Green $out_green"
     //% out_blue.min=0 out_blue.max=1023
@@ -68,7 +74,7 @@ namespace stemhubCity {
     * @param R_pin Red pin, eg: AnalogPin.P1
     * @param G_pin Green pin, eg: AnalogPin.P2
     */
-    //%subcategory=SmartCity
+    //% subcategory=SmartCity
     //% blockId=rgb_led_setting
     //% block="Color led pin setting |Blue $B_pin Red $R_pin Green $G_pin"
     //% weight=249
@@ -81,8 +87,11 @@ namespace stemhubCity {
         return led
     }
 
-    //%blockId=turn_white_led
-    //%block="Turn White LED to %intensity |at %pin"
+    /**
+     * Turning the white led
+     */
+    //% blockId=turn_white_led
+    //% block="Turn White LED to %intensity |at %pin"
     //% weight=245
     //% intensity.min=0 intensity.max=1023
     export function turn_white_led(intensity: number, pin: AnalogPin): void {
@@ -90,8 +99,11 @@ namespace stemhubCity {
         basic.pause(500)
     }
 
-    //%blockId=servo
-    //%block="Turn Servo to %deg degree |at %pin"
+    /**
+     * Turning the Servo
+     */
+    //% blockId=servo
+    //% block="Turn Servo to %deg degree |at %pin"
     //% weight=240
     //% deg.min=0 deg.max=180
     export function servo(deg: number, pin: AnalogPin): void {
@@ -99,7 +111,10 @@ namespace stemhubCity {
         basic.pause(500)
     }
 
-    //%subcategory=SmartCity
+    /**
+     * Read the value of light sensor
+     */
+    //% subcategory=SmartCity
     //% blockId=read_light_sensor
     //% block="Get light value (percentage) at Pin %light_pin"
     //% weight=225
@@ -107,7 +122,10 @@ namespace stemhubCity {
         return Math.round(100-pins.analogReadPin(light_pin)/1023*100)
     }
 
-    //%subcategory=SmartHome
+    /**
+     * Read the value of light sensor
+     */
+    //% subcategory=SmartHome
     //% blockId=read_light_sensor_2
     //% block="Get light value (percentage) at Pin %light_pin"
     //% weight=225
@@ -115,7 +133,10 @@ namespace stemhubCity {
         return Math.round(pins.analogReadPin(light_pin) / 1023 * 100)
     }
 
-    //%subcategory=SmartHome
+    /**
+     * Read raindrop sensor
+     */
+    //% subcategory=SmartHome
     //% blockId=read_raindrop_sensor
     //% block="Get raindrop value (percentage) at Pin %rain_pin"
     //% weight=200
@@ -123,7 +144,10 @@ namespace stemhubCity {
         return Math.round(pins.analogReadPin(rain_pin)/1023*100)
     }
 
-    //%subcategory=SmartHome
+    /**
+     * Read touch sensor
+     */
+    //% subcategory=SmartHome
     //% blockId=read_touch_sensor
     //% block="Touch detected at Pin %touch_pin"
     //% weight=185
@@ -133,7 +157,10 @@ namespace stemhubCity {
 		else return false
     }
 
-    //%subcategory=SmartCity
+    /**
+     * Read motion sensor (triggered or not)
+     */
+    //% subcategory=SmartCity
     //% blockId=read_motion_sensor
     //% block="Get motion (triggered or not) at Pin %motion_pin"
     //% weight=180
@@ -143,7 +170,10 @@ namespace stemhubCity {
         else return false
     }
 
-    //%subcategory=SmartHome
+    /**
+     * Read Human sensor
+     */
+    //% subcategory=SmartHome
     //% blockId=read_human_sensor
     //% block="Human detected at Pin %motion_pin"
     //% weight=180
@@ -153,6 +183,9 @@ namespace stemhubCity {
         else return false
     }
 
+    /**
+     * Read sound sensor(dB)
+     */
     //% blockId=read_sound_sensors
     //% block="Get noise level (dB) at Pin %sound_pin"
     //% weight=170
@@ -166,6 +199,9 @@ namespace stemhubCity {
         return sum/20
     }
 
+    /**
+     * The unit Distance sensor returns
+     */
     export enum DistanceUnit {
     //% block="cm"
     Centimeters,
@@ -175,7 +211,10 @@ namespace stemhubCity {
     MicroSeconds
 	}
 
-    //%subcategory=SmartCity
+    /**
+     * Read Ultrasonic distance at given pin
+     */
+    //% subcategory=SmartCity
     //% blockId=read_distance_sensor
 	//% block="Get distance unit %unit trig %trig echo %echo"
 	//% weight=140
@@ -219,12 +258,16 @@ namespace stemhubCity {
     let _readSuccessful: boolean = false
 	let _sensorresponding: boolean = false
 
+    /**
+     * Data type of DHT11
+     */
     export enum DHT11dataType {
     //% block="temperature"
     temperature,
 	//% block="humidity"
     humidity
 	}
+
     function dht11_queryData( dataPin: DigitalPin) {
 
         if(_firsttime){
@@ -294,11 +337,13 @@ namespace stemhubCity {
         
         //wait 1 sec after query 
         basic.pause(1000)
-
         }
     }
     
-    //%subcategory=SmartHome
+    /**
+     * Read DHT11 data
+     */
+    //% subcategory=SmartHome
     //% block="DHT11 Read %dht11data| at pin %dht11pin|"
 	//% weight=150
     export function readData(dht11data: DHT11dataType, dht11pin: DigitalPin): number {
@@ -312,6 +357,9 @@ namespace stemhubCity {
 		else return 0
     }
 
+    /**
+     * The state of fan
+     */
     export enum FanState {
         //% block="Off"
         Off = 0,
@@ -324,11 +372,11 @@ namespace stemhubCity {
     }
 
     /**
-     * Setting the Fan
+     * Controlling the Fan
      * @param inputA Input A, eg: DigitalPin.P14
      * @param inputB Input B, eg: DigitalPin.P15
      */
-    //%subcategory=SmartHome
+    //% subcategory=SmartHome
     //% block="Fan Control %state, Input A %inputA Input B %inputB"
 	//% weight=150
     export function FanControl(state:FanState, inputA:DigitalPin, inputB:DigitalPin) {
@@ -352,7 +400,10 @@ namespace stemhubCity {
         }
     }
 
-    //%subcategory=SmartHome
+    /**
+     * Read which key the KeyPad is pressed
+     */
+    //% subcategory=SmartHome
     //% block="Read KeyPad, SCL Pin %SCLPin SDO Pin %SDOPin"
 	//% weight=150
     export function readKeyPad(SCLPin:DigitalPin, SDOPin:DigitalPin):string{
@@ -392,6 +443,9 @@ namespace stemhubCity {
         }
     }
 
+/**
+ * namespace for OLED display
+ */
 export namespace OLED {
     let font: Buffer;
     const SSD1306_SETCONTRAST = 0x81
@@ -435,7 +489,10 @@ export namespace OLED {
         pins.i2cWriteBuffer(chipAdress, buf, false)
     }
 
-    //%subcategory=OLED
+    /**
+     * Clear the OLED display
+     */
+    //% subcategory=OLED
     //% block="clear OLED display"
     //% weight=3
     export function clear() {
@@ -520,7 +577,10 @@ export namespace OLED {
         loadPercent = num
     }
 
-    //%subcategory=OLED
+    /**
+     * Display a loading screen on OLED
+     */
+    //% subcategory=OLED
     //% block="draw loading bar at $percent percent"
     //% percent.min=0 percent.max=100
     //% weight=2
@@ -534,7 +594,10 @@ export namespace OLED {
         }
     }
 
-    //%subcategory=OLED
+    /**
+     * Write a string on OLED
+     */
+    //% subcategory=OLED
     //% block="show (without newline) string $str"
     //% weight=6
     export function writeString(str: string) {
@@ -547,7 +610,10 @@ export namespace OLED {
         }
     }
 
-    //%subcategory=OLED
+    /**
+     * Write a number on OLED
+     */
+    //% subcategory=OLED
     //% block="show (without newline) number $n"
     //% weight=5
     export function writeNum(n: number) {
@@ -555,7 +621,10 @@ export namespace OLED {
         writeString(numString)
     }
 
-    //%subcategory=OLED
+    /**
+     * Write a line of string on OLED
+     */
+    //% subcategory=OLED
     //% block="show string $str"
     //% weight=8
     export function writeStringNewLine(str: string) {
@@ -563,7 +632,10 @@ export namespace OLED {
         newLine()
     }
 
-    //%subcategory=OLED
+    /**
+     * Write a line of number on OLED
+     */
+    //% subcategory=OLED
     //% block="show number $n"
     //% weight=7
     export function writeNumNewLine(n: number) {
@@ -571,7 +643,10 @@ export namespace OLED {
         newLine()
     }
 
-    //%subcategory=OLED
+    /**
+     * Insert a newline character
+     */
+    //% subcategory=OLED
     //% block="insert newline"
     //% weight=4
     export function newLine() {
@@ -648,7 +723,10 @@ export namespace OLED {
         }
     }
 
-    //%subcategory=OLED
+    /**
+     * Draw a line on screen
+     */
+    //% subcategory=OLED
     //% block="draw line from:|x: $x0 y: $y0 to| x: $x1 y: $y1"
     //% x0.defl=0
     //% y0.defl=0
@@ -690,7 +768,10 @@ export namespace OLED {
         drawShape(pixels)
     }
 
-    //%subcategory=OLED
+    /**
+     * Draw a rectangle on screen
+     */
+    //% subcategory=OLED
     //% block="draw rectangle from:|x: $x0 y: $y0 to| x: $x1 y: $y1"
     //% x0.defl=0
     //% y0.defl=0
@@ -704,7 +785,10 @@ export namespace OLED {
         drawLine(x1, y0, x1, y1)
     }
 
-    //%subcategory=OLED
+    /**
+     * Initialize the OLED display
+     */
+    //% subcategory=OLED
     //% block="initialize OLED with width $width height $height"
     //% width.defl=128
     //% height.defl=64
@@ -1001,5 +1085,4 @@ export namespace OLED {
         clear()
     }
 }
-
 }
