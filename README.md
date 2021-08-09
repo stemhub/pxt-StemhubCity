@@ -7,6 +7,8 @@ Teacher can teach students how to use sensors (human sensor, raindrop sensor, mo
 
 ![icon](https://github.com/stemhub/pxt-StemhubCity/blob/master/icon.png)
 
+For more information, please visit: https://www.stemeshop.com/product-page/smart-city-%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85%E7%B3%BB%E7%B5%B1%E5%AD%B8%E7%BF%92%E5%A5%97%E8%A3%9D
+
 ## Code Examples
 
 Turning Servo
